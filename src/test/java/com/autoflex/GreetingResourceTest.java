@@ -1,4 +1,4 @@
-package com.neander;
+package com.autoflex;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;

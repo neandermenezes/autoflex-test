@@ -1,4 +1,4 @@
-package com.neander;
+package com.autoflex;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
