@@ -44,7 +44,10 @@ public class ProductServiceImpl implements ProductService {
 
   @Transactional
   @Override
-  public Product saveProduct(Product product) {
+  public Product saveProduct(Product product, List<Feedstock> feedstocks) {
+    feedstocks.forEach((feedstock -> {
+      product.addFeedstock(feedstock);
+    }));
     productRepository.persistAndFlush(product);
     return product;
   }

@@ -18,12 +18,8 @@ public class Product {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank
-  @Size(max = 256)
   private String name;
 
-  @NotBlank
-  @Size(min = 0)
   private Integer value;
 
   @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -66,5 +62,9 @@ public class Product {
 
   public void setFeedstocks(List<Feedstock> feedstocks) {
     this.feedstocks = feedstocks;
+  }
+
+  public void addFeedstock(Feedstock feedstock) {
+    this.feedstocks.add(feedstock);
   }
 }

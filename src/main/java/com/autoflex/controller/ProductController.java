@@ -2,9 +2,9 @@ package com.autoflex.controller;
 
 import com.autoflex.dto.ProductDto;
 import com.autoflex.exceptions.ProductNotFoundException;
+import com.autoflex.model.Feedstock;
 import com.autoflex.model.Product;
 import com.autoflex.service.ProductService;
-import com.autoflex.service.ProductServiceImpl;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -39,13 +39,16 @@ public class ProductController {
   }
 
   @POST
-  public Product createProduct(@Valid ProductDto productDto) {
-    return productService.saveProduct(productDto.toProduct());
+  public Product createProduct(@Valid ProductDto productDto, List<Feedstock> necessaryFeedstocks) {
+    return productService.saveProduct(productDto.toProduct(), necessaryFeedstocks);
   }
 
   @PUT
   @Path("/{id}")
-  public Product updateProduct(@PathParam("id") Long id, @Valid ProductDto productDto) throws ProductNotFoundException {
+  public Product updateProduct(
+      @PathParam("id") Long id,
+      @Valid ProductDto productDto
+  ) throws ProductNotFoundException {
     return productService.updateProduct(id, productDto.toProduct());
   }
 
