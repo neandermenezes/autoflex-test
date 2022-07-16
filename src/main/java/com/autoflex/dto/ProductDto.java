@@ -8,7 +8,7 @@ public class ProductDto {
 
   private String name;
 
-  private Integer valor;
+  private Integer value;
 
   public String getName() {
     return name;
@@ -18,18 +18,18 @@ public class ProductDto {
     this.name = name;
   }
 
-  public Integer getValor() {
-    return valor;
+  public Integer getValue() {
+    return value;
   }
 
-  public void setValor(Integer valor) {
-    this.valor = valor;
+  public void setValue(Integer value) {
+    this.value = value;
   }
 
   public Product toProduct() {
     Product product = new Product();
     product.setName(name);
-    product.setValor(valor);
+    product.setValue(value);
 
     return product;
   }

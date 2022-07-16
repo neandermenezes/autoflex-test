@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
   public Product updateProduct(Long id, Product product) throws ProductNotFoundException {
     Product existingProduct = getProductById(id);
     existingProduct.setName(product.getName());
-    existingProduct.setValor(product.getValor());
+    existingProduct.setValue(product.getValue());
 
     productRepository.persist(existingProduct);
     return existingProduct;

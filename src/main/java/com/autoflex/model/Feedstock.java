@@ -3,6 +3,7 @@ package com.autoflex.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ public class Feedstock {
   private Integer quantity;
 
   @ManyToMany(mappedBy = "feedstocks")
-  private List<Product> products;
+  private List<Product> products = new ArrayList<>();
 
   public Long getId() {
     return id;
@@ -49,5 +50,9 @@ public class Feedstock {
 
   public void setProducts(List<Product> products) {
     this.products = products;
+  }
+
+  public void addProduct(Product product) {
+    products.add(product);
   }
 }

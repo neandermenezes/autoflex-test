@@ -1,7 +1,5 @@
 package com.autoflex.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -11,20 +9,24 @@ import java.util.List;
 @Entity
 public class Product {
 
-  public Product(String name, Integer valor) {
+  public Product(String name, Integer value) {
     this.name = name;
-    this.valor = valor;
+    this.value = value;
   }
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @NotBlank
+  @Size(max = 256)
   private String name;
 
-  private Integer valor;
+  @NotBlank
+  @Size(min = 0)
+  private Integer value;
 
-  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @JoinTable(name = "product_feedstock",
     joinColumns = {@JoinColumn(name = "product_id")},
     inverseJoinColumns = {@JoinColumn(name = "feedstock_id")})
@@ -50,12 +52,12 @@ public class Product {
     this.name = name;
   }
 
-  public Integer getValor() {
-    return valor;
+  public Integer getValue() {
+    return value;
   }
 
-  public void setValor(Integer valor) {
-    this.valor = valor;
+  public void setValue(Integer value) {
+    this.value = value;
   }
 
   public List<Feedstock> getFeedstocks() {
