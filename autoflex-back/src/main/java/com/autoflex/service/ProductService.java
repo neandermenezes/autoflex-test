@@ -14,7 +14,7 @@ public interface ProductService {
 
   Product updateProduct(Long id, Product product) throws ProductNotFoundException;
 
-  Product saveProduct(Product product, List<Feedstock> feedstocks);
+  Product saveProduct(Product product);
 
   void deleteProduct(Long id) throws ProductNotFoundException;
 }

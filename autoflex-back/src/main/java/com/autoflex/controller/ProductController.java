@@ -39,8 +39,8 @@ public class ProductController {
   }
 
   @POST
-  public Product createProduct(@Valid ProductDto productDto, List<Feedstock> necessaryFeedstocks) {
-    return productService.saveProduct(productDto.toProduct(), necessaryFeedstocks);
+  public Product createProduct(@Valid ProductDto productDto) {
+    return productService.saveProduct(productDto.toProduct());
   }
 
   @PUT

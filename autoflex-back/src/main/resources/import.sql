@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS Product (
     id BIGINT,
     name varchar(255) NOT NULL,
     valor int NOT NULL,
+    FOREIGN KEY(feedstock_id)
     );
 
 DELETE FROM Product;
