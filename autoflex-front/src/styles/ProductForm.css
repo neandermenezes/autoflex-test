@@ -1,0 +1,11 @@
+.product-form__btn--create {
+  background-color: var(--green);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 5rem;
+}
