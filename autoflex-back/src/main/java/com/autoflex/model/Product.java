@@ -1,6 +1,9 @@
 package com.autoflex.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,11 +22,12 @@ public class Product {
 
   private Integer value;
 
-  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+  @ManyToMany(cascade = CascadeType.MERGE)
   @JoinTable(name = "product_feedstock",
     joinColumns = {@JoinColumn(name = "product_id")},
     inverseJoinColumns = {@JoinColumn(name = "feedstock_id")})
-  private List<Feedstock> feedstocks;
+  @JsonManagedReference
+  private List<Feedstock> feedstocks = new ArrayList<>();
 
   public Product() {
 
@@ -62,6 +66,7 @@ public class Product {
   }
 
   public void addFeedstock(Feedstock feedstock) {
+    System.out.println(feedstock);
     this.feedstocks.add(feedstock);
   }
 }
