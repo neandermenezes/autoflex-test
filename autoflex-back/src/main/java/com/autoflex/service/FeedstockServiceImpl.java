@@ -3,6 +3,7 @@ package com.autoflex.service;
 import com.autoflex.exceptions.FeedstockNotFoundException;
 import com.autoflex.model.Feedstock;
 import com.autoflex.repository.FeedstockRepository;
+import com.autoflex.result.FeedstockWithProductsResult;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
