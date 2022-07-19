@@ -1,5 +1,5 @@
 # Autoflex-app
-Feito com React, ContextAPI, Javascript, Java, Quarkus e Hibernate.
+Feito com React, ContextAPI, Javascript, Java, Quarkus, Hibernate e MYSQL.
 
 ## Descrição
 
@@ -33,6 +33,7 @@ Há também uma terceira tabela construida a partir de Product e Feedstock (prod
 - Agora voce deve estar com a aplicação rodando nas portas 3000 (front) e 8080 (back), caso contrário rode os comandos (linux):
 - sudo kill -9 `sudo lsof -t -i:8080`
 - sudo kill -9 `sudo lsof -t -i:3000`
+- NÃO ESQUEÇA DE MUDAR AS VARIAVEIS DO SEU BANCO MYSQL EM: MAIN/RESOURCES/APPLICATION.PROPERTIES
 
 
 
