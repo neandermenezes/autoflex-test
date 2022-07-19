@@ -3,6 +3,7 @@ package com.autoflex.service;
 import com.autoflex.exceptions.ProductNotFoundException;
 import com.autoflex.model.Feedstock;
 import com.autoflex.model.Product;
+import com.autoflex.repository.FeedstockRepository;
 import com.autoflex.repository.ProductRepository;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -10,13 +11,17 @@ import javax.inject.Inject;
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class ProductServiceImpl implements ProductService {
 
   private final ProductRepository productRepository;
 
-  @Inject ProductServiceImpl(ProductRepository productRepository) {
+  private final FeedstockRepository feedstockRepository;
+
+  @Inject ProductServiceImpl(ProductRepository productRepository, FeedstockRepository feedstockRepository) {
+    this.feedstockRepository = feedstockRepository;
     this.productRepository = productRepository;
   }
 
@@ -44,14 +49,12 @@ public class ProductServiceImpl implements ProductService {
 
   @Transactional
   @Override
-  public Product saveProduct(Product product) {
-    List<Feedstock> feedstocks = product.getFeedstocks();
+  public Product saveProduct(Product product, List<Long> feedstockIds) {
+    List<Feedstock> feedstocks = feedstockIds.stream().map((id) -> feedstockRepository.findById(id)).collect(Collectors.toList());
 
-    feedstocks.forEach((feedstock -> {
-      product.addFeedstock(feedstock);
-    }));
+    feedstocks.forEach((feedstock -> product.addFeedstock(feedstock)));
 
-    productRepository.persistAndFlush(product);
+    productRepository.persist(product);
     return product;
   }
 
@@ -59,5 +62,18 @@ public class ProductServiceImpl implements ProductService {
   @Override
   public void deleteProduct(Long id) throws ProductNotFoundException {
     productRepository.delete(getProductById(id));
+  }
+
+  @Transactional
+  @Override
+  public void addFeedstockToProduct(Long productId, Long feedstockId) {
+    Product product = productRepository.findById(productId);
+    Feedstock feedstock = feedstockRepository.findById(feedstockId);
+
+    System.out.println(product.getName() + " " + feedstock.getName());
+
+    product.addFeedstock(feedstock);
+
+    productRepository.persist(product);
   }
 }

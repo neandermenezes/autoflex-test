@@ -13,7 +13,7 @@ public class ProductDto {
 
   private Integer value;
 
-  private List<Feedstock> feedstocks = new ArrayList<>();
+  private List<Long> feedstockIds = new ArrayList<>();
 
   public String getName() {
     return name;
@@ -31,19 +31,18 @@ public class ProductDto {
     this.value = value;
   }
 
-  public List<Feedstock> getFeedstocks() {
-    return feedstocks;
+  public List<Long> getFeedstockIds() {
+    return feedstockIds;
   }
 
-  public void setFeedstocks(List<Feedstock> feedstocks) {
-    this.feedstocks = feedstocks;
+  public void setFeedstockIds(List<Long> feedstockIds) {
+    this.feedstockIds = feedstockIds;
   }
 
   public Product toProduct() {
     Product product = new Product();
     product.setName(name);
     product.setValue(value);
-    product.setFeedstocks(feedstocks);
 
     return product;
   }

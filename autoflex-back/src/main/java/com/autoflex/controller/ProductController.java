@@ -40,7 +40,7 @@ public class ProductController {
 
   @POST
   public Product createProduct(@Valid ProductDto productDto) {
-    return productService.saveProduct(productDto.toProduct());
+    return productService.saveProduct(productDto.toProduct(), productDto.getFeedstockIds());
   }
 
   @PUT
@@ -57,5 +57,12 @@ public class ProductController {
   public Response deleteProduct(@PathParam("id") Long id) throws ProductNotFoundException {
     productService.deleteProduct(id);
     return Response.status(Response.Status.NO_CONTENT).build();
+  }
+
+  @POST
+  @Path("/{product_id}/feedstock/{feedstock_id}")
+  public Response addFeedstockToProduct(@PathParam("product_id") Long productId, @PathParam("feedstock_id") Long feedstockId) {
+    productService.addFeedstockToProduct(productId, feedstockId);
+    return Response.ok().build();
   }
 }
