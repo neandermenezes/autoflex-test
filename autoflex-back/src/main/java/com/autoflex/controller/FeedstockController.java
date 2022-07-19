@@ -58,4 +58,11 @@ public class FeedstockController {
     feedstockService.deleteFeedstock(id);
     return Response.status(Response.Status.NO_CONTENT).build();
   }
+
+  @GET
+  @Path("{id}/products")
+  public List<Object> getFeedstockProducts(@PathParam("id") Long id) {
+    return feedstockService.getFeedstockProducts(id);
+  }
+
 }
