@@ -17,4 +17,7 @@ public interface FeedstockService {
   Feedstock saveFeedstock(Feedstock feedstock);
 
   void deleteFeedstock(Long id) throws FeedstockNotFoundException;
+
+
+  List<Object> getFeedstockProducts(Long id);
 }
