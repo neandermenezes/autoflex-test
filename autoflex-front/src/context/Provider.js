@@ -1,32 +1,34 @@
-import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
-import Context from './Context'
-import { requestData } from '../service'
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import Context from "./Context";
+import { requestData } from "../service";
 
 export default function Provider({ children }) {
-  const [products, setProducts] = useState([])
-  const [feedstocks, setFeedstocks] = useState([])
+  const [products, setProducts] = useState([]);
+  const [feedstocks, setFeedstocks] = useState([]);
+  const [feedstockProductsArray, setFeedstockProductsArray] = useState([]);
 
   useEffect(() => {
-    requestData('/product')
+    requestData("/product")
       .then((data) => setProducts(data))
-      .catch((e) => console.log(e))
+      .catch((e) => console.log(e));
 
-      requestData('/feedstock')
+    requestData("/feedstock")
       .then((data) => setFeedstocks(data))
-      .catch((e) => console.log(e))
-  }, [])
+      .catch((e) => console.log(e));
+
+    requestData("/feedstock/products")
+      .then((data) => setFeedstockProductsArray(data))
+      .catch((e) => console.log(e));
+  }, []);
 
   const contextValue = {
     products,
-    feedstocks
-  }
+    feedstocks,
+    feedstockProductsArray
+  };
 
-  return (
-    <Context.Provider value={ contextValue }>
-      { children }
-    </Context.Provider>
-  )
+  return <Context.Provider value={contextValue}>{children}</Context.Provider>;
 }
 
 Provider.propTypes = {
@@ -34,4 +36,4 @@ Provider.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-}
+};
