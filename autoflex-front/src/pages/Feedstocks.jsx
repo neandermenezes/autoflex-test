@@ -7,7 +7,7 @@ export default function Feedstocks() {
   return (
     <>
       <Header />
-      <section className="feedstocks-page">
+      <section className="products-page">
         <FeedstockForm />
         <FeedstockTable />
       </section>

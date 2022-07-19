@@ -13,3 +13,12 @@ export const requestData = async (endpoint) => {
 export const deleteData = async (id, endpoint) => {
   await api.delete(`${endpoint}/${id}`);
 }
+
+export const createData = async (body, endpoint) => {
+  const { data } = await api.post(endpoint, body)
+  return data
+}
+
+export const updateData = async (body, endpoint) => {
+  await api.put(endpoint, body)
+}
