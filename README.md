@@ -28,11 +28,15 @@ Há também uma terceira tabela construida a partir de Product e Feedstock (prod
 
 ## Como usar esse repositório
 - Clone o repositório
+- Crie um schema novo chamado "autoflex" (sem as aspas) em seu mysql workbench.
 - Entre no terminal da pasta autoflex-back baixe as dependencias com mvn install e rode quarkus dev.
 - Entre no terminal da pasta autoflex-front baixe as dependencias com npm install e rode npm start.
 - Agora voce deve estar com a aplicação rodando nas portas 3000 (front) e 8080 (back), caso contrário rode os comandos (linux):
 - sudo kill -9 `sudo lsof -t -i:8080`
 - sudo kill -9 `sudo lsof -t -i:3000`
+
+
+
 - NÃO ESQUEÇA DE MUDAR AS VARIAVEIS DO SEU BANCO MYSQL EM: MAIN/RESOURCES/APPLICATION.PROPERTIES
 
 
