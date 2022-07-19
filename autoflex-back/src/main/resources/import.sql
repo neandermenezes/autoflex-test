@@ -9,16 +9,11 @@ CREATE TABLE IF NOT EXISTS Product (
 
 DELETE FROM Product;
 
-INSERT INTO Product (name, value) VALUES ('produto1', 100);
-INSERT INTO Product (name, value) VALUES ('produto2', 200);
-INSERT INTO Product (name, value) VALUES ('produto3', 300);
-INSERT INTO Product (name, value) VALUES ('produto4', 400);
-INSERT INTO Product (name, value) VALUES ('produto5', 500);
-INSERT INTO Product (name, value) VALUES ('produto6', 600);
-INSERT INTO Product (name, value) VALUES ('produto7', 700);
-INSERT INTO Product (name, value) VALUES ('produto8', 800);
-INSERT INTO Product (name, value) VALUES ('produto9', 900);
-INSERT INTO Product (name, value) VALUES ('produto10', 1000);
+INSERT INTO Product (name, value) VALUES ('Desk', 200);
+INSERT INTO Product (name, value) VALUES ('Chair', 50);
+INSERT INTO Product (name, value) VALUES ('Glass Dask', 300);
+INSERT INTO Product (name, value) VALUES ('Pen', 5);
+INSERT INTO Product (name, value) VALUES ('Pencil', 2);
 
 CREATE TABLE IF NOT EXISTS Feedstock (
     id BIGINT,
@@ -28,13 +23,34 @@ CREATE TABLE IF NOT EXISTS Feedstock (
 
 DELETE FROM Feedstock;
 
-INSERT INTO Feedstock (name, quantity) VALUES ('feedstock1', 100);
-INSERT INTO Feedstock (name, quantity) VALUES ('feedstock2', 200);
-INSERT INTO Feedstock (name, quantity) VALUES ('feedstock3', 300);
-INSERT INTO Feedstock (name, quantity) VALUES ('feedstock4', 400);
-INSERT INTO Feedstock (name, quantity) VALUES ('feedstock5', 500);
-INSERT INTO Feedstock (name, quantity) VALUES ('feedstock6', 600);
-INSERT INTO Feedstock (name, quantity) VALUES ('feedstock7', 700);
-INSERT INTO Feedstock (name, quantity) VALUES ('feedstock8', 800);
-INSERT INTO Feedstock (name, quantity) VALUES ('feedstock9', 900);
-INSERT INTO Feedstock (name, quantity) VALUES ('feedstock10', 1000);
+INSERT INTO Feedstock (name, quantity) VALUES ('Wood', 100);
+INSERT INTO Feedstock (name, quantity) VALUES ('Plastic', 200);
+INSERT INTO Feedstock (name, quantity) VALUES ('Ink', 300);
+INSERT INTO Feedstock (name, quantity) VALUES ('Glass', 400);
+INSERT INTO Feedstock (name, quantity) VALUES ('Iron', 500);
+
+CREATE TABLE IF NOT EXISTS product_feedstock (
+    product_id BIGINT NOT NULL,
+    feedstock_id BITINT NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES Product(id),
+    FOREIGN KEY (feedstock_id) REFERENCES Feedstock(id)
+    );
+
+DELETE FROM product_feedstock;
+
+INSERT INTO product_feedstock (product_id, feedstock_id) VALUES (1, 1);
+INSERT INTO product_feedstock (product_id, feedstock_id) VALUES (1, 5);
+INSERT INTO product_feedstock (product_id, feedstock_id) VALUES (1, 2);
+
+INSERT INTO product_feedstock (product_id, feedstock_id) VALUES (2, 1);
+INSERT INTO product_feedstock (product_id, feedstock_id) VALUES (2, 2);
+INSERT INTO product_feedstock (product_id, feedstock_id) VALUES (2, 5);
+
+INSERT INTO product_feedstock (product_id, feedstock_id) VALUES (3, 2);
+INSERT INTO product_feedstock (product_id, feedstock_id) VALUES (3, 4);
+INSERT INTO product_feedstock (product_id, feedstock_id) VALUES (3, 5);
+
+INSERT INTO product_feedstock (product_id, feedstock_id) VALUES (4, 2);
+INSERT INTO product_feedstock (product_id, feedstock_id) VALUES (4, 3);
+
+INSERT INTO product_feedstock (product_id, feedstock_id) VALUES (5, 1);
