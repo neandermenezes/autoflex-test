@@ -14,7 +14,6 @@ export default function ProductsTable() {
           <th>Name</th>
           <th>Value</th>
           <th>Delete</th>
-          <th>Details</th>
         </tr>
       </thead>
 
@@ -35,9 +34,6 @@ export default function ProductsTable() {
                 >
                   Delete
                 </button>
-              </td>
-              <td>
-                <button className="product-table__details">Details</button>
               </td>
             </tr>
           ))}
